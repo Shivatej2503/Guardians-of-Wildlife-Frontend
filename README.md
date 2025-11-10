@@ -88,9 +88,9 @@ Guardians-Of-WildLife-API/
 **Shivatej Dabade**  
 Frontend Developer | MERN Stack Enthusiast  
 
-📧 Email: *your-email@example.com*  
-🌐 Portfolio: *[your-portfolio-link.com]*  
-💼 GitHub: [@your-github-username](https://github.com/your-github-username)
+📧 Email: *shivatedabade2004@gmailcom*  
+🌐 Portfolio: *[portfolio-shivatej2503](https://shivatej2503.github.io/portfolio-shivatej/)]*  
+💼 GitHub: [@Shivatej2503](https://github.com/Shivatej2503)
 
 ---
 
