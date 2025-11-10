@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Guardians-Of-WildLife API</title>
+  <style>
+    :root {
+      --bg-color: #f8f9fa;
+      --text-color: #222;
+      --container-bg: #fff;
+      --border-color: #ddd;
+      --link-color: #0066cc;
+      --input-bg: #f1f1f1;
+      --btn-bg: #0066cc;
+      --btn-hover: #004c99;
+      --shadow: rgba(0, 0, 0, 0.1);
+    }
+
+    body.dark-mode {
+      --bg-color: #121212;
+      --text-color: #eaeaea;
+      --container-bg: #1e1e1e;
+      --border-color: #333;
+      --link-color: #4da3ff;
+      --input-bg: #2b2b2b;
+      --btn-bg: #1f6feb;
+      --btn-hover: #1557b0;
+      --shadow: rgba(255, 255, 255, 0.1);
+    }
+
+    body {
+      height: 100vh;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: var(--bg-color);
+      font-family: Arial, sans-serif;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .container {
+      background: var(--container-bg);
+      padding: 25px 30px;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      box-shadow: 0 2px 6px var(--shadow);
+      width: 340px;
+      text-align: left;
+      color: var(--text-color);
+      transition: background 0.3s, color 0.3s;
+    }
+
+    h2 {
+      margin-top: 0;
+      color: var(--text-color);
+      font-size: 20px;
+    }
+
+    p {
+      color: var(--text-color);
+      font-size: 14px;
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+
+    a {
+      display: block;
+      text-decoration: none;
+      color: var(--link-color);
+      font-size: 15px;
+      margin: 8px 0;
+      transition: color 0.3s;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .endpoint {
+      font-family: monospace;
+      font-size: 15px;
+      color: var(--text-color);
+      margin-top: 10px;
+    }
+
+    .id-box {
+      border: 1px solid var(--border-color);
+      padding: 5px;
+      border-radius: 4px;
+      background: var(--input-bg);
+      width: calc(100% - 12px);
+      font-family: monospace;
+      margin-top: 4px;
+      color: var(--text-color);
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .go-btn {
+      background-color: var(--btn-bg);
+      color: #fff;
+      border: none;
+      padding: 6px 10px;
+      border-radius: 4px;
+      margin-top: 6px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background 0.3s;
+    }
+
+    .go-btn:hover {
+      background-color: var(--btn-hover);
+    }
+
+    /* Toggle button */
+    .theme-toggle {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      background: var(--btn-bg);
+      color: #fff;
+      border: none;
+      border-radius: 20px;
+      padding: 8px 14px;
+      cursor: pointer;
+      font-size: 13px;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    .theme-toggle:hover {
+      background: var(--btn-hover);
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <button class="theme-toggle" onclick="toggleTheme()">🌙 Dark Mode</button>
+
+  <div class="container">
+    <h2>Guardians-Of-WildLife API</h2>
+    <p>
+      This API provides data about Guardians-Of-WildLife, including contact info, team members,
+      wildlife programs, and conservation details. Use the routes below to access each section.
+    </p>
+    <hr><hr>
+
+    <!-- CONTACTUS -->
+    <a href="https://guardians-of-wildlife-backend.onrender.com/contactus/show" target="_blank">/contactus/show</a>
+    <hr><hr>
+
+    <!-- JOINTEAM -->
+    <a href="https://guardians-of-wildlife-backend.onrender.com/jointeam/show" target="_blank">/jointeam/show</a>
+    <div class="endpoint">
+      /jointeam/show/:id
+      <input type="text" class="id-box" placeholder="Enter ID" id="jointeam-id" />
+      <button class="go-btn" onclick="goToAPI('jointeam')">Go</button>
+    </div>
+
+    <hr><hr>
+
+    <!-- PROGRAMS -->
+    <a href="https://guardians-of-wildlife-backend.onrender.com/programs/show" target="_blank">/programs/show</a>
+    <div class="endpoint">
+      /programs/show/:id
+      <input type="text" class="id-box" placeholder="Enter ID" id="programs-id" />
+      <button class="go-btn" onclick="goToAPI('programs')">Go</button>
+    </div>
+
+    <hr><hr>
+
+    <!-- WILDLIFE -->
+    <a href="https://guardians-of-wildlife-backend.onrender.com/wildlife/show" target="_blank">/wildlife/show</a>
+    <div class="endpoint">
+      /wildlife/show/:id
+      <input type="text" class="id-box" placeholder="Enter ID" id="wildlife-id" />
+      <button class="go-btn" onclick="goToAPI('wildlife')">Go</button>
+    </div>
+  </div>
+
+  <script>
+    function goToAPI(type) {
+      const id = document.getElementById(`${type}-id`).value.trim();
+      if (id) {
+        const url = `https://guardians-of-wildlife-backend.onrender.com/${type}/show/${id}`;
+        alert(`Navigating to: ${url}`);
+        window.open(url, '_blank');
+      } else {
+        alert('Please enter an ID first.');
+      }
+    }
+
+    // Enter key shortcut
+    document.querySelectorAll('.id-box').forEach((input) => {
+      input.addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') {
+          const type = this.id.split('-')[0];
+          goToAPI(type);
+        }
+      });
+    });
+
+    // Theme toggle
+    const body = document.body;
+    const toggleBtn = document.querySelector('.theme-toggle');
+
+    // Load saved theme
+    if (localStorage.getItem('theme') === 'dark') {
+      body.classList.add('dark-mode');
+      toggleBtn.textContent = '☀️ Light Mode';
+    }
+
+    function toggleTheme() {
+      body.classList.toggle('dark-mode');
+      const isDark = body.classList.contains('dark-mode');
+      toggleBtn.textContent = isDark ? '☀️ Light Mode' : '🌙 Dark Mode';
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    }
+  </script>
+</body>
+</html>
